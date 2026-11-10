@@ -1,6 +1,6 @@
 import {test,expect} from '@playwright/test';
 test('первый запуск, создание, редактирование, выполнение, история и офлайн',async({page,context})=>{
-await page.goto('/');await expect(page.getByText('Здесь пока нет задач')).toBeVisible();
+await page.goto('./');await expect(page.getByText('Здесь пока нет задач')).toBeVisible();
 await page.locator('.add-top').click();
 await page.getByLabel('Что нужно сделать?').fill('Оплатить аренду');
 await page.getByLabel('Категория',{exact:true}).selectOption('Магазин');
@@ -15,7 +15,7 @@ await page.locator('.bottom-nav').getByRole('button',{name:'Задачи',exact:
 expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
 });
 test('календарь, JSON экспорт и восстановление, тема',async({page})=>{
-await page.goto('/');await page.locator('.bottom-nav').getByRole('button',{name:'Настройки'}).click();await page.getByRole('button',{name:'Включить демоданные'}).click();await expect(page.getByText('Демонстрационные данные включены.',{exact:false})).toBeVisible();
+await page.goto('./');await page.locator('.bottom-nav').getByRole('button',{name:'Настройки'}).click();await page.getByRole('button',{name:'Включить демоданные'}).click();await expect(page.getByText('Демонстрационные данные включены.',{exact:false})).toBeVisible();
 const pending=page.waitForEvent('download');await page.getByRole('button',{name:'Скачать резервную копию JSON'}).click();const file=await pending;const path=await file.path();
 await page.getByRole('button',{name:'Тёмная',exact:true}).click();await expect(page.locator('html')).toHaveAttribute('data-theme','dark');
 await page.getByRole('button',{name:'Удалить все данные',exact:true}).click();await page.getByRole('button',{name:'Подтвердить'}).click();await expect(page.getByText('Демонстрационные данные включены.',{exact:false})).toHaveCount(0);

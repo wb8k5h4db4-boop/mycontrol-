@@ -7,7 +7,7 @@ await page.getByLabel('Категория',{exact:true}).selectOption('Мага�
 await page.getByRole('button',{name:'Сохранить задачу'}).click();
 await expect(page.getByText('Оплатить аренду',{exact:true})).toBeVisible();
 await page.getByText('Оплатить аренду',{exact:true}).click();await page.getByLabel('Что нужно сделать?').fill('Оплатить аренду магазина');await page.getByRole('button',{name:'Сохранить задачу'}).click();
-await page.reload();await expect(page.getByText('Оплатить аренду магазина',{exact:true})).toBeVisible();
+await expect(page.getByRole('dialog')).toHaveCount(0);await expect(page.getByText('Оплатить аренду магазина',{exact:true})).toBeVisible();await page.reload();await expect(page.getByText('Оплатить аренду магазина',{exact:true})).toBeVisible();
 await page.getByRole('button',{name:'Выполнить: Оплатить аренду магазина',exact:true}).click();
 await page.locator('.bottom-nav').getByRole('button',{name:'Задачи',exact:true}).click();await page.getByRole('button',{name:'История',exact:true}).click();await expect(page.getByText('Оплатить аренду магазина',{exact:true})).toBeVisible();
 await page.evaluate(async()=>{await navigator.serviceWorker.ready});await page.reload();await context.setOffline(true);await page.reload();await expect(page.getByRole('heading',{name:/Доброе утро|Добрый день|Добрый вечер/})).toBeVisible();

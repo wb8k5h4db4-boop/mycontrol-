@@ -10,7 +10,7 @@ await page.getByText('Оплатить аренду',{exact:true}).click();await
 await page.reload();await expect(page.getByText('Оплатить аренду магазина',{exact:true})).toBeVisible();
 await page.getByRole('button',{name:'Выполнить: Оплатить аренду магазина',exact:true}).click();
 await page.locator('.bottom-nav').getByRole('button',{name:'Задачи',exact:true}).click();await page.getByRole('button',{name:'История',exact:true}).click();await expect(page.getByText('Оплатить аренду магазина',{exact:true})).toBeVisible();
-await page.evaluate(async()=>{await navigator.serviceWorker.ready});await page.reload();await context.setOffline(true);await page.reload();await expect(page.getByRole('heading',{name:'Задачи',exact:true})).toBeVisible().catch(async()=>{await expect(page.getByRole('heading',{name:/Доброе утро|Добрый день|Добрый вечер/})).toBeVisible()});
+await page.evaluate(async()=>{await navigator.serviceWorker.ready});await page.reload();await context.setOffline(true);await page.reload();await expect(page.getByRole('heading',{name:/Доброе утро|Добрый день|Добрый вечер/})).toBeVisible();
 await page.locator('.bottom-nav').getByRole('button',{name:'Задачи',exact:true}).click();await page.getByRole('button',{name:'История',exact:true}).click();await expect(page.getByText('Оплатить аренду магазина',{exact:true})).toBeVisible();
 expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
 });
